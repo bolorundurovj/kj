@@ -274,16 +274,14 @@ class Hoop extends Entity {
 
         this.falling = false;
         this.idle = true; //true before getting thrown
-        this.velocity = createVector(0.5, 0.5);//check it out
+        this.velocity = createVector(0, 0);//check it out
         this.img = imgHoop;
         this.startPos = createVector(x, y);
         this.previousPos = createVector(x, y);
         this.scale = createVector(1, 1);
         this.radius = objSize / 2;
         this.scored = false; //if the score or miss has been registered
-        this.canThrow = true; //used to prevent getting thrown without grabbing the ball first
-        //this.acc = p5.Vector.random3D;
-        //this.acc.setMag(random(4,6));
+        this.canThrow = false; //used to prevent getting thrown without grabbing the ball first
 
         this.animTimer = 0;
 
@@ -334,7 +332,7 @@ class Hoop extends Entity {
         }
 
         //remove idle flag after getting thrown || everything disappears after projectile is launched
-        /*if (this.idle && this.pos.y < this.startPos.y - objSize * 1.75) {
+        if (this.idle && this.pos.y < this.startPos.y - objSize * 1.75) {
 
             this.idle = false;
 
@@ -344,10 +342,10 @@ class Hoop extends Entity {
             }
 
             //determine throw direction based on direction between current position and position in the previous frame
-            let dir = createVector(this.pos.x-this.previousPos.x , this.pos.y-this.previousPos.y );//i need to work on this
+            let dir = createVector(this.pos.x - this.previousPos.x , this.pos.y - this.previousPos.y );//i need to work on this
             dir.normalize();
             this.velocity = createVector(dir.x * objSize * 0.175, dir.y * objSize * 0.4);
-        }*/
+        }
 
         //Check collision with both ball while falling // collision with bat
         if (this.falling) {
@@ -367,6 +365,7 @@ class Hoop extends Entity {
                 }
             }
 
+            
         }
 
         //Move
@@ -374,19 +373,8 @@ class Hoop extends Entity {
 
     }
 
+    
 
-    //Check if the ball is currently clicked/touched
-    /*checkClick() {
-        if (mouseX >= this.pos.x - objSize * this.sizeMod / 2 * this.scale.x &&
-            mouseX <= this.pos.x + objSize * this.sizeMod / 2 * this.scale.y &&
-            mouseY >= this.pos.y - objSize * this.sizeMod / 2 * this.scale.x &&
-            mouseY <= this.pos.y + objSize * this.sizeMod / 2 * this.scale.y) {
-            return true;
-        } else {
-            return false;
-        }
-    }*/
-=
 }
 
 //Hoop sides, important for collisions with ball
